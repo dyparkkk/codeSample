@@ -1,4 +1,4 @@
-package com.example.dddstart.order.category;
+package com.example.dddstart.category;
 
 import javax.persistence.*;
 import java.util.Set;

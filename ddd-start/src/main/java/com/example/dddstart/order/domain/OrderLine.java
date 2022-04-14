@@ -1,6 +1,6 @@
 package com.example.dddstart.order.domain;
 
-import com.example.dddstart.order.category.Product;
+import com.example.dddstart.category.Product;
 
 public class OrderLine {
     // Product를 몇개 살지, 얼마에 살지, 총합은 얼마인지

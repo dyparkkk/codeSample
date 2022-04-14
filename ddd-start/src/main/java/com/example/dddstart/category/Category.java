@@ -1,4 +1,4 @@
-package com.example.dddstart.order.category;
+package com.example.dddstart.category;
 
 public class Category {
     private CategoryId categoryId;

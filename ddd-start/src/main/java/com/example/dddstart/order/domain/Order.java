@@ -1,16 +1,30 @@
 package com.example.dddstart.order.domain;
 
 
+import com.example.dddstart.common.model.Money;
+
+import javax.persistence.Column;
 import javax.persistence.Embedded;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 
 import java.util.List;
 
 import static com.example.dddstart.order.domain.OrderState.*;
 
+@Entity
 public class Order {
 
-    private Money totalAmounts;
+    @EmbeddedId
+    private OrderNo number;
+
+    @Column(name = "total_amounts")
+    private Money totalAmounts; // moneyConverter로 적용해서 값 변환
+
     private List<OrderLine> orderLines;
+
+    @Embedded
+    private Orderer orderer;
 
     @Embedded
     private ShippingInfo shippingInfo;

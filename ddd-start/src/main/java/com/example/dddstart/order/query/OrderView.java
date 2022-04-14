@@ -1,8 +1,8 @@
 package com.example.dddstart.order.query;
 
-import com.example.dddstart.Member;
+import com.example.dddstart.member.Member;
 import com.example.dddstart.order.domain.Order;
-import com.example.dddstart.order.category.Product;
+import com.example.dddstart.category.Product;
 
 public class OrderView {
 
