@@ -1,5 +1,7 @@
-package com.example.dddstart.category;
+package com.example.dddstart.catalog.product;
 
+import com.example.dddstart.catalog.Category;
+import com.example.dddstart.catalog.CategoryRepository;
 import org.springframework.data.domain.Page;
 
 import java.util.List;

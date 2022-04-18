@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import study.querydsl.dto.MemberDto;
+import study.querydsl.dto.QMemberDto;
 import study.querydsl.dto.UserDto;
 import study.querydsl.entity.Member;
 import study.querydsl.entity.QMember;
@@ -172,12 +173,12 @@ public class QuerydslBasicTest {
                         member.age.max(),
                         member.age.sum()
                 )
-                .from()
+                .from(member)
                 .fetch();
 
         Tuple tuple = fetch.get(0);
         assertThat(tuple.get(member.count())).isEqualTo(4);
-        assertThat(tuple.get(member.age.avg())).isEqualTo(100);
+        assertThat(tuple.get(member.age.max())).isEqualTo(40);
     }
 
     @Test
@@ -322,7 +323,7 @@ public class QuerydslBasicTest {
                 .fetch();
 
         assertThat(fetch).extracting("age")
-                .containsExactly(40);
+                .contains(30, 40);
     }
 
     // in절
@@ -461,6 +462,14 @@ public class QuerydslBasicTest {
                                 .select(memberSub.age.max())
                                 .from(memberSub), "age")
                 ))
+                .from(member)
+                .fetch();
+    }
+
+    @Test
+    public void findDtoByQueryProjection() {
+        List<MemberDto> fetch = queryFactory
+                .select(new QMemberDto(member.username, member.age))
                 .from(member)
                 .fetch();
     }
