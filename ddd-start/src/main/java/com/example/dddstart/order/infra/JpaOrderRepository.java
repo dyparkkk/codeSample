@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
@@ -34,6 +35,11 @@ public class JpaOrderRepository implements OrderRepository {
                 .setFirstResult(startRow)
                 .setMaxResults(size)
                 .getResultList();
+    }
 
+    @Override
+    public Long countsAll() {
+        return em.createQuery("select count(o) from Order o", Long.class)
+                .getSingleResult();
     }
 }
