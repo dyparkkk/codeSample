@@ -7,6 +7,11 @@ import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+/**
+ * 변경에 취약함 -> 새로운 할인 조건 추가, 로직 변경 등
+ * 이유 : 순번 조건과 기간 조건이라는 독립적인 타입이 하나의 클래스 안에 공존
+ *      -> 분리 필요
+ */
 @Getter @Setter
 public class DiscountCondition {
     private DiscountConditionType type;

@@ -2,6 +2,7 @@ package com.example.objects.ch05;
 
 import com.example.objects.movie.Money;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 
 /**
@@ -20,5 +21,13 @@ public class Screening {
     public Money calculateFee(int audienceCount) {
         // movie의 구현에 대한 지식 없이 Screening이 전송할 메시지를 결정함 -> 깔끔하게 캡슐화 가능
         return movie.calculateMovieFee(this).times(audienceCount);
+    }
+
+    public LocalDateTime getWhenScreened() {
+        return whenScreened;
+    }
+
+    public int getSequence() {
+        return sequence;
     }
 }
