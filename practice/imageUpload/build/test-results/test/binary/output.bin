@@ -1,0 +1,3 @@
+ù12:36:50.669 [Test worker] DEBUG org.springframework.test.util.ReflectionTestUtils - Getting field 'originFilename' from target object [example.imageUpload.domain.ImageUpload@5ccbeb64] or target class [class example.imageUpload.domain.ImageUpload]
+_URL : file:/C:/Users/dy/spring_study/imageUpload/imageUpload/build/resources/main/img/404.png
+4fileInputStream : java.io.FileInputStream@163d04ff

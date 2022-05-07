@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hello.itemservice.validation.MessageCodesResolverTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-03-18T01:37:54" hostname="DESKTOP-CJFM7H2" time="0.212">
+  <properties/>
+  <testcase name="messageCodesResolverField()" classname="hello.itemservice.validation.MessageCodesResolverTest" time="0.212"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

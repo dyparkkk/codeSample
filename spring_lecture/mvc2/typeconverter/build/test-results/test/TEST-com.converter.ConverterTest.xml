@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.converter.ConverterTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-03-22T01:14:45" hostname="DESKTOP-CJFM7H2" time="0.153">
+  <properties/>
+  <testcase name="IntegerToString()" classname="com.converter.ConverterTest" time="0.147"/>
+  <testcase name="stringToInteger()" classname="com.converter.ConverterTest" time="0.005"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
