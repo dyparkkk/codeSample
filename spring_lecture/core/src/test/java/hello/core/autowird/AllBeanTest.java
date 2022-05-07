@@ -20,6 +20,7 @@ public class AllBeanTest {
 
     @Test
     void findAllBean(){
+        // 스프링 컨테이너에 클래스를 빈으로 등록
         ApplicationContext ac = new AnnotationConfigApplicationContext(AutoAppConfig.class, DisCountService.class);
         DisCountService disCountService = ac.getBean(DisCountService.class);
         Member member = new Member(1L, "member1", Grade.Vip);
@@ -33,6 +34,8 @@ public class AllBeanTest {
 
     }
 
+    // 빈으로 등록할 클래스
+    // 생성자 주입 시점에 컨테이너가 자동으로 관련 클래스(빈으로 등록된)을 Map과 List에 담아줌
     static class DisCountService{
         private final Map<String, DiscountPolicy> policyMap;
         private final List<DiscountPolicy> policies;
@@ -45,7 +48,7 @@ public class AllBeanTest {
             System.out.println("policies = " + policies);
         }
 
-
+        // Map에서 가져오면 됨 ( 상당히 편리함)
         public int discount(Member member, int price, String discountCode) {
             DiscountPolicy discountPolicy = policyMap.get(discountCode);
             return discountPolicy.discount(member, price);
