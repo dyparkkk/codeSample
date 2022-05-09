@@ -31,7 +31,6 @@ class PostControllerTest {
                         new FileInputStream(getClass().getResource("/img/raspberry.png").getFile()))
         );
 
-        //https://kukekyakya.tistory.com/549
         mvc.perform(multipart("/posts/new")
                 .file("imageFiles", multipartFileList.get(0).getBytes())
                 .file("imageFiles", multipartFileList.get(1).getBytes())
