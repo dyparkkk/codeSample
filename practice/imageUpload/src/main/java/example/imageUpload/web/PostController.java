@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
 import java.util.Optional;
 
 @Controller
@@ -27,8 +28,8 @@ public class PostController {
     }
 
     @PostMapping("/posts/new")
-    public String savePost(@ModelAttribute PostForm postForm, RedirectAttributes redirectAttributes) {
-        Long postId = postService.postSave(postForm.getImagefiles(), postForm.getContent());
+    public String savePost(@ModelAttribute PostForm postForm, RedirectAttributes redirectAttributes) throws IOException {
+        Long postId = postService.postSave(postForm.getImageFiles(), postForm.getContent());
 
         redirectAttributes.addAttribute("postId", postId);
         return "redirect:/post/{postId}";
@@ -37,6 +38,6 @@ public class PostController {
     @GetMapping("/posts/{postId}")
     public String posts(@PathVariable Long postId, Model model) {
         Post post = postRepository.findById(postId).get();
-        return "";
+        return "success";
     }
 }

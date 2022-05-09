@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -16,19 +17,13 @@ import java.util.List;
 public class PostService {
 
     private final PostRepository postRepository;
-    private final ImageUploadRepository imageUploadRepository;
+    private final ImageStore imageStore;
 
     @Transactional
-    public Long postSave(List<MultipartFile> multipartFiles, String content){
+    public Long postSave(List<MultipartFile> multipartFiles, String content) throws IOException {
         Post post = new Post(content);
-
-        List<ImageUpload> imageUploadList = ImageUpload.createImageUploadList(multipartFiles);
-        if(imageUploadList != null) {
-            // 이미지 저장 로직 (추가 예정)
-
-            post.addImageUploads(imageUploadList);
-            imageUploadRepository.saveAll(imageUploadList);
-        }
+        List<ImageUpload> imageUploadList = imageStore.store(multipartFiles);
+        post.addImageUploads(imageUploadList);
 
         return postRepository.save(post).getId();
     }

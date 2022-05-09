@@ -1,5 +1,6 @@
 package example.imageUpload.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,21 +25,31 @@ import static org.assertj.core.api.Assertions.*;
 //@AutoConfigureMockMvc
 class ImageUploadTest {
 
+    private  MockMultipartFile multipartFile1;
+    private  MockMultipartFile multipartFile2;
+
+    @BeforeEach
+    void init() throws IOException {
+        multipartFile1 = new MockMultipartFile("image",
+                "404.png", "image/png",
+                new FileInputStream(getClass().getResource("/img/404.png").getFile()));
+
+       multipartFile2 = new MockMultipartFile("image2",
+                "raspberry.png", "image/png",
+                new FileInputStream(getClass().getResource("/img/raspberry.png").getFile()));
+    }
+
     @Test
     void createImageUploadTest() throws IOException {
         // given
-        URL resource = getClass().getResource("/img/404.png");
-        MockMultipartFile multipartFile = new MockMultipartFile("image",
-                "test.png", "image/png",
-                new FileInputStream(resource.getFile()));
 
         // when
-        ImageUpload imageUpload = ImageUpload.createImageUpload(multipartFile);
+        ImageUpload imageUpload = ImageUpload.createImageUpload(multipartFile1);
 
         // then
         String originFilename = (String) ReflectionTestUtils.getField(imageUpload, "originFilename");
 
-        assertThat(originFilename).isEqualTo("test.png");
+        assertThat(originFilename).isEqualTo("404.png");
         assertThat(imageUpload).extracting("storageImageName").isNotNull();
     }
 
@@ -53,16 +64,6 @@ class ImageUploadTest {
     @Test
     void createImageUploadListTest() throws IOException {
         // given
-        URL resource = getClass().getResource("/img/404.png");
-        MockMultipartFile multipartFile1 = new MockMultipartFile("image",
-                "404.png", "image/png",
-                new FileInputStream(resource.getFile()));
-
-        URL resource2 = getClass().getResource("/img/raspberry.png");
-        MockMultipartFile multipartFile2 = new MockMultipartFile("image2",
-                "raspberry.png", "image/png",
-                new FileInputStream(resource2.getFile()));
-
         List<MultipartFile> arrayList = new ArrayList<>();
         arrayList.add(multipartFile1);
         arrayList.add(multipartFile2);

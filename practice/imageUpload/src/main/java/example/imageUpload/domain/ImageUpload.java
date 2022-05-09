@@ -65,4 +65,8 @@ public class ImageUpload {
     protected void setPost(Post post) {
         this.post = post;
     }
+
+    public String getStorageImageName() {
+        return storageImageName;
+    }
 }
