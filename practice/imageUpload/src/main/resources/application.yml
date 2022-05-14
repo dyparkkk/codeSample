@@ -24,6 +24,5 @@ spring:
     multipart:
       max-file-size: 5MB
 
-
 # const
 file.dir: C:/Users/dy/Documents/img/

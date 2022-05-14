@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface ImageStore {
 
-    public List<ImageUpload>  store(List<MultipartFile> multipartFiles) throws IOException;
+    public List<ImageUpload> store(List<MultipartFile> multipartFiles) throws IOException;
 }
