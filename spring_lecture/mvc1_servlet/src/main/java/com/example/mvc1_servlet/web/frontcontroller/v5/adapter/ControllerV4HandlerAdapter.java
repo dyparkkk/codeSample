@@ -1,7 +1,8 @@
 package com.example.mvc1_servlet.web.frontcontroller.v5.adapter;
 
 import com.example.mvc1_servlet.web.frontcontroller.ModelView;
-import com.example.mvc1_servlet.web.frontcontroller.v3.ControllerV3;
+import com.example.mvc1_servlet.web.frontcontroller.MyView;
+import com.example.mvc1_servlet.web.frontcontroller.v4.ControllerV4;
 import com.example.mvc1_servlet.web.frontcontroller.v5.MyHandlerAdapter;
 
 import javax.servlet.ServletException;
@@ -11,21 +12,23 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ControllerV3HandlerAdapter implements MyHandlerAdapter {
-
+public class ControllerV4HandlerAdapter implements MyHandlerAdapter {
     @Override
     public boolean supports(Object handler) {
-        return (handler instanceof ControllerV3);
+        return (handler instanceof ControllerV4);
     }
 
     @Override
     public ModelView handle(HttpServletRequest req, HttpServletResponse resp, Object handler) throws ServletException, IOException {
+        ControllerV4 controller = (ControllerV4) handler;
 
-        ControllerV3 controller = (ControllerV3) handler;
         Map<String, String> paramMap = createParamMap(req);
-        ModelView mv = controller.process(paramMap);
+        Map<String, Object> model = new HashMap<>();
+        String viewPath = controller.process(paramMap, model);
 
-        return mv;
+        ModelView modelView = new ModelView(viewPath);
+        modelView.setModel(model);
+        return modelView;
     }
 
     private Map<String, String> createParamMap(HttpServletRequest req) {
@@ -34,4 +37,5 @@ public class ControllerV3HandlerAdapter implements MyHandlerAdapter {
                 .forEachRemaining(param -> paramMap.put(param, req.getParameter(param)));
         return paramMap;
     }
+
 }
