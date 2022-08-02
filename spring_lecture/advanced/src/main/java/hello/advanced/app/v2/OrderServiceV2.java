@@ -2,8 +2,7 @@ package hello.advanced.app.v2;
 
 import hello.advanced.trace.TraceId;
 import hello.advanced.trace.TraceStatus;
-import hello.advanced.trace.helloTraceV1.HelloTraceV1;
-import hello.advanced.trace.helloTraceV1.HelloTraceV2;
+import hello.advanced.trace.helloTrace.HelloTraceV2;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
